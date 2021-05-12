@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Form from "./form.js";
-import DetailsPage from "./DetailsPage";
 
 const Employee = () => {
   const [values, setValues] = useState([
@@ -97,7 +96,7 @@ const Employee = () => {
   const handleEdit = async (data) => {
     setIsActive(true);
     const response = await fetch(
-      `https://employee-backends.herokuapp.com/emp//${data._id}`,
+      `https://employee-backends.herokuapp.com/emp/${data._id}`,
       {
         method: "PUT",
         headers: {
@@ -121,11 +120,6 @@ const Employee = () => {
     return (x) => {
       return x.state.toLowerCase().includes(keyWord.toLowerCase()) || !keyWord;
     };
-  };
-
-  /////////////////
-  const handleClick = (e) => {
-    setSelectedState(e);
   };
   return (
     <div className="container-fluid">
@@ -214,16 +208,6 @@ const Employee = () => {
                   >
                     Edit
                   </button>
-                  <a
-                    className="list-group-item"
-                    key={item._id}
-                    onClick={() => handleClick(item)}
-                  >
-                    {/* {city.City} */} Learn More
-                    {selectedState === item ? (
-                      <DetailsPage item={item.details} />
-                    ) : null}
-                  </a>
                 </td>
               </tr>
             </tbody>
